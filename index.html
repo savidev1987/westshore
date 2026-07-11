@@ -442,40 +442,71 @@ input[type=number]:focus { border-color: rgba(167,139,250,.5); box-shadow: 0 0 0
     <h3 style="margin-bottom:4px">💡 Total Spent to Date — Excluding Interest</h3>
     <p style="margin-bottom:24px">Interest is the cost of borrowing, not a direct asset purchase. Here's what you've actually deployed in hard dollars.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px">
 
-      <!-- Col 1: what went in (excl interest) -->
-      <div style="background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.12);border-radius:14px;padding:18px">
-        <div style="font-size:.68rem;font-weight:600;color:#f87171;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Hard Cash Out (excl. interest)</div>
-        <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Down payment (net)</span><span>$175,000</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Closing + setup costs</span><span>$11,680</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">HOA (24 mo × $270)</span><span>$6,480</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Extra principal payment</span><span>$20,000</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0"><span style="color:#94a3b8">Refinancing closing cost</span><span>$4,800</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:.88rem;font-weight:700;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)"><span>Subtotal</span><span style="color:#f87171">$217,960</span></div>
-      </div>
+      <!-- Left: full itemised list -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 
-      <!-- Col 2: interest isolated -->
-      <div style="background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.15);border-radius:14px;padding:18px">
-        <div style="font-size:.68rem;font-weight:600;color:#fbbf24;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Interest — Cost of Borrowing</div>
-        <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Pre-refi (Aug '24–Nov '25)</span><span>$38,114</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0"><span style="color:#94a3b8">Post-refi (Dec '25–Jul '26)</span><span>$14,190</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:.88rem;font-weight:700;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)"><span>Total Interest</span><span style="color:#fbbf24">$52,304</span></div>
-        <div style="font-size:.7rem;color:#94a3b8;margin-top:10px;line-height:1.5">This money is gone — it doesn't build equity or reduce what you owe. It's purely the cost of carrying the mortgage.</div>
-      </div>
-
-      <!-- Col 3: net summary -->
-      <div style="background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.15);border-radius:14px;padding:18px;text-align:center;display:flex;flex-direction:column;justify-content:center">
-        <div style="font-size:.68rem;font-weight:600;color:#a78bfa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px">Net Hard Cash (excl. interest)</div>
-        <div style="font-size:.75rem;color:#94a3b8;margin-bottom:4px">Hard cash out</div>
-        <div style="font-size:1.15rem;font-weight:700;color:#f87171;margin-bottom:8px">$217,960</div>
-        <div style="font-size:.75rem;color:#94a3b8;margin-bottom:4px">Less received back</div>
-        <div style="font-size:1.15rem;font-weight:700;color:#34d399;margin-bottom:16px">−$64,410</div>
-        <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:16px">
-          <div style="font-size:.72rem;color:#94a3b8;margin-bottom:6px">Net deployed (excl. interest)</div>
-          <div style="font-size:2rem;font-weight:800;color:#a78bfa">$153,550</div>
-          <div style="font-size:.68rem;color:#94a3b8;margin-top:8px">+ $52,304 in interest on top of this</div>
+        <!-- Upfront one-time costs -->
+        <div style="background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.12);border-radius:14px;padding:18px">
+          <div style="font-size:.68rem;font-weight:600;color:#f87171;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">🏠 Upfront — Jul 2024</div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Down Payment</span><span>$183,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Realtor Credit</span><span style="color:#34d399">−$8,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Closing Costs</span><span>$10,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Inspection</span><span>$700</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Cleaning (1st)</span><span>$180</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Cleaning (2nd)</span><span>$180</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Utility Setup (1st)</span><span>$300</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Utility Setup (2nd)</span><span>$300</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">LLC Formation</span><span>$500</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">LLC Renewal</span><span style="color:#fbbf24">TBD</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0"><span style="color:#94a3b8">Repair Cost</span><span style="color:#fbbf24">TBD</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.84rem;font-weight:700;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)"><span>Net Upfront</span><span style="color:#f87171">$187,160 + TBD</span></div>
         </div>
+
+        <!-- Ongoing holding costs -->
+        <div style="background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.12);border-radius:14px;padding:18px">
+          <div style="font-size:.68rem;font-weight:600;color:#60a5fa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">📅 Ongoing — Aug '24–Jul '26</div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">HOA (24 × $270)</span><span>$6,480</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Extra Principal (Dec '25)</span><span>$20,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0"><span style="color:#94a3b8">Refi Closing Cost</span><span>$4,800</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.84rem;font-weight:700;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)"><span>Ongoing Subtotal</span><span style="color:#60a5fa">$31,280</span></div>
+
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)">
+          <div style="font-size:.68rem;font-weight:600;color:#fbbf24;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">💰 Received Back</div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Rent (21 mo)</span><span style="color:#34d399">$58,710</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0"><span style="color:#94a3b8">Security Deposit</span><span style="color:#34d399">$2,850</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.84rem;font-weight:700;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)"><span>Total Back</span><span style="color:#34d399">$61,560</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: interest + net summary -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <!-- Interest isolated -->
+        <div style="background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.15);border-radius:14px;padding:18px">
+          <div style="font-size:.68rem;font-weight:600;color:#fbbf24;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Interest — Cost of Borrowing</div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="color:#94a3b8">Pre-refi (Aug '24–Nov '25)</span><span>$38,114</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.79rem;padding:5px 0"><span style="color:#94a3b8">Post-refi (Dec '25–Jul '26)</span><span>$14,190</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;font-weight:700;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)"><span>Total Interest</span><span style="color:#fbbf24">$52,304</span></div>
+          <div style="font-size:.7rem;color:#94a3b8;margin-top:10px;line-height:1.5">Purely the cost of carrying the mortgage — doesn't build equity.</div>
+        </div>
+
+        <!-- Net summary -->
+        <div style="background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.15);border-radius:14px;padding:18px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center">
+          <div style="font-size:.68rem;font-weight:600;color:#a78bfa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Net (excl. interest)</div>
+          <div style="font-size:.72rem;color:#94a3b8;margin-bottom:3px">Hard cash out</div>
+          <div style="font-size:1.1rem;font-weight:700;color:#f87171;margin-bottom:8px">$218,440 + TBD</div>
+          <div style="font-size:.72rem;color:#94a3b8;margin-bottom:3px">Received back</div>
+          <div style="font-size:1.1rem;font-weight:700;color:#34d399;margin-bottom:14px">−$61,560</div>
+          <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:14px">
+            <div style="font-size:.7rem;color:#94a3b8;margin-bottom:6px">Net deployed (excl. interest)</div>
+            <div style="font-size:1.9rem;font-weight:800;color:#a78bfa">$156,880</div>
+            <div style="font-size:.65rem;color:#94a3b8;margin-top:6px">+ TBDs + $52,304 interest</div>
+          </div>
+        </div>
+
       </div>
 
     </div>
