@@ -497,11 +497,11 @@ input[type=number]:focus { border-color: rgba(167,139,250,.5); box-shadow: 0 0 0
       <div class="kpi-value">$183k</div>
       <div class="kpi-sub">Down payment</div>
     </div>
-    <div class="kpi" style="--kpi-color:#34d399">
+    <div class="kpi" style="--kpi-color:#34d399;cursor:pointer;position:relative" onclick="document.getElementById('principal-modal').style.display='flex'" title="Click for breakdown">
       <div class="kpi-glow"></div><div class="kpi-icon">📉</div>
       <div class="kpi-label">Total Principal Paid</div>
-      <div class="kpi-value">$15,571</div>
-      <div class="kpi-sub">Sched. + $20k extra</div>
+      <div class="kpi-value">$35,571</div>
+      <div class="kpi-sub">Tap for breakdown 👆</div>
     </div>
     <div class="kpi" style="--kpi-color:#f87171">
       <div class="kpi-glow"></div><div class="kpi-icon">📊</div>
@@ -1191,5 +1191,57 @@ new Chart($('sensitivityChart'),{type:'bar',data:{
   tb.innerHTML = rows.join('');
 })();
 </script>
+
+<!-- ══ PRINCIPAL BREAKDOWN MODAL ══════════════════════════════════════ -->
+<div id="principal-modal" style="display:none;position:fixed;inset:0;z-index:999;align-items:center;justify-content:center;background:rgba(5,8,20,.75);backdrop-filter:blur(6px)" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#0d1224;border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px;max-width:440px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,.6)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <div>
+        <div style="font-size:1.05rem;font-weight:700">Principal Paid Breakdown</div>
+        <div style="font-size:.75rem;color:#94a3b8;margin-top:3px">Aug 2024 → Apr 2028 · 45 months</div>
+      </div>
+      <button onclick="document.getElementById('principal-modal').style.display='none'" style="background:rgba(255,255,255,.08);border:none;color:#94a3b8;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">✕</button>
+    </div>
+
+    <!-- Pre-refi block -->
+    <div style="background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.15);border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:.7rem;font-weight:600;color:#a78bfa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Phase 1 · Scheduled (Pre-Refi)</div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px"><span style="color:#94a3b8">Aug 2024 – Nov 2025 (16 months)</span><span>$4,580</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:#94a3b8">Original loan @ 7.625% rate</span><span style="color:#94a3b8">~$272–$300/mo</span></div>
+    </div>
+
+    <!-- Extra lump sum -->
+    <div style="background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:.7rem;font-weight:600;color:#34d399;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Phase 2 · Extra Lump Sum</div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px"><span style="color:#94a3b8">One-time additional payment</span><span style="color:#34d399;font-weight:700">$20,000</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:#94a3b8">Applied Dec 2025 at refinancing</span><span style="color:#94a3b8">Balance ↓ ~$20k</span></div>
+    </div>
+
+    <!-- Post-refi block -->
+    <div style="background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.15);border-radius:12px;padding:16px;margin-bottom:20px">
+      <div style="font-size:.7rem;font-weight:600;color:#60a5fa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Phase 3 · Scheduled (Post-Refi)</div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px"><span style="color:#94a3b8">Dec 2025 – Apr 2028 (29 months)</span><span>$10,991</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:#94a3b8">New loan @ lower rate</span><span style="color:#94a3b8">~$354–$420/mo</span></div>
+    </div>
+
+    <!-- Total bar -->
+    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <span style="font-size:.82rem;color:#94a3b8">Scheduled principal (45 mo)</span>
+        <span style="font-weight:600">$15,571</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <span style="font-size:.82rem;color:#94a3b8">Extra lump sum (Dec 2025)</span>
+        <span style="font-weight:600;color:#34d399">+ $20,000</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(52,211,153,.08);border-radius:10px;padding:12px 16px">
+        <span style="font-weight:700">Total Principal Reduced</span>
+        <span style="font-size:1.3rem;font-weight:800;color:#34d399">$35,571</span>
+      </div>
+      <div style="font-size:.72rem;color:#94a3b8;margin-top:10px;text-align:center">This entire amount is now locked in as equity — reducing what you owe at sale.</div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
