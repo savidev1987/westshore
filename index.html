@@ -549,6 +549,69 @@ input[type=number]:focus { border-color: rgba(167,139,250,.5); box-shadow: 0 0 0
     <div class="kpi" style="--kpi-color:#f87171"><div class="kpi-glow"></div><div class="kpi-icon">🔴</div><div class="kpi-label">Vacancy Months</div><div class="kpi-value">3</div><div class="kpi-sub">Aug '24, Feb-Mar '26</div></div>
     <div class="kpi" style="--kpi-color:#fbbf24"><div class="kpi-glow"></div><div class="kpi-icon">⚡</div><div class="kpi-label">Refinanced</div><div class="kpi-value">Dec '25</div><div class="kpi-sub">Saved ~$600/mo interest</div></div>
   </div>
+  <!-- Visual milestone bar -->
+  <div class="glass chart-card" style="padding:28px;margin-bottom:16px">
+    <h3 style="margin-bottom:4px">Journey at a Glance</h3>
+    <p style="margin-bottom:28px">Aug 2024 → Apr 2028 · 45 months total</p>
+
+    <!-- Segment bar -->
+    <div style="position:relative;padding-bottom:56px">
+
+      <!-- Year labels above -->
+      <div style="display:flex;justify-content:space-between;font-size:.65rem;color:var(--muted);margin-bottom:8px;padding:0 0">
+        <span>2024</span>
+        <span style="position:absolute;left:26.7%">2025</span>
+        <span style="position:absolute;left:53.3%">2026</span>
+        <span style="position:absolute;left:80%">2027</span>
+        <span>2028</span>
+      </div>
+
+      <!-- Colored segments: 45 months total -->
+      <div style="display:flex;height:28px;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.4)">
+        <!-- Aug 2024 Vacant (1/45 = 2.22%) -->
+        <div style="width:2.22%;background:#f87171;flex-shrink:0"></div>
+        <!-- Tenant 1 Sep 2024–Jan 2026 (17/45 = 37.78%) -->
+        <div style="width:37.78%;background:linear-gradient(90deg,#a78bfa,#8b5cf6);flex-shrink:0"></div>
+        <!-- Vacant Feb–Mar 2026 (2/45 = 4.44%) -->
+        <div style="width:4.44%;background:#f87171;flex-shrink:0"></div>
+        <!-- Tenant 2 Apr–Jul 2026 (4/45 = 8.89%) -->
+        <div style="width:8.89%;background:linear-gradient(90deg,#34d399,#10b981);flex-shrink:0"></div>
+        <!-- Projected Aug 2026–Apr 2028 (21/45 = 46.67%) -->
+        <div style="width:46.67%;background:repeating-linear-gradient(90deg,rgba(96,165,250,.22) 0px,rgba(96,165,250,.22) 12px,rgba(96,165,250,.08) 12px,rgba(96,165,250,.08) 16px);border:1px dashed rgba(96,165,250,.35);flex-shrink:0"></div>
+      </div>
+
+      <!-- Milestone pins (absolute positioned below bar) -->
+      <!-- Purchase: 0% -->
+      <div style="position:absolute;top:28px;left:0%;transform:translateX(-50%)">
+        <div style="width:2px;height:12px;background:#a78bfa;margin:0 auto"></div>
+        <div style="font-size:.6rem;color:#a78bfa;font-weight:600;white-space:nowrap;text-align:center;margin-top:3px">🏠 Aug '24<br>Purchase</div>
+      </div>
+      <!-- Refi: Dec 2025 = 16/44 = 36.4% -->
+      <div style="position:absolute;top:28px;left:36.4%;transform:translateX(-50%)">
+        <div style="width:2px;height:12px;background:#fbbf24;margin:0 auto"></div>
+        <div style="font-size:.6rem;color:#fbbf24;font-weight:600;white-space:nowrap;text-align:center;margin-top:3px">⚡ Dec '25<br>Refinance</div>
+      </div>
+      <!-- Today: Jul 2026 = 23/44 = 52.3% -->
+      <div style="position:absolute;top:20px;left:52.3%;transform:translateX(-50%)">
+        <div style="width:2px;height:20px;background:#60a5fa;margin:0 auto;box-shadow:0 0 8px #60a5fa"></div>
+        <div style="font-size:.6rem;color:#60a5fa;font-weight:700;white-space:nowrap;text-align:center;margin-top:3px;padding:2px 6px;background:rgba(96,165,250,.12);border-radius:4px;border:1px solid rgba(96,165,250,.3)">📍 Today<br>Jul '26</div>
+      </div>
+      <!-- Sale: Apr 2028 = 100% -->
+      <div style="position:absolute;top:28px;left:100%;transform:translateX(-50%)">
+        <div style="width:2px;height:12px;background:#34d399;margin:0 auto;box-shadow:0 0 8px #34d399"></div>
+        <div style="font-size:.6rem;color:#34d399;font-weight:600;white-space:nowrap;text-align:center;margin-top:3px">🏷 Apr '28<br>Target Sale</div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:4px">
+      <div style="display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)"><div style="width:12px;height:8px;border-radius:2px;background:#a78bfa"></div>Tenant 1 (17 mo)</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)"><div style="width:12px;height:8px;border-radius:2px;background:#34d399"></div>Tenant 2 (4+ mo)</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)"><div style="width:12px;height:8px;border-radius:2px;background:#f87171"></div>Vacant (3 mo)</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)"><div style="width:12px;height:8px;border-radius:2px;background:rgba(96,165,250,.3);border:1px dashed rgba(96,165,250,.5)"></div>Projected (21 mo)</div>
+    </div>
+  </div>
+
   <div class="glass chart-card">
     <h3>Full Property Timeline (Aug 2024 → Apr 2028)</h3>
     <p>Hover each dot to see monthly details</p>
