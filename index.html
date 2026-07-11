@@ -1133,17 +1133,7 @@ function updateExtended(){
         : '⚠️ Still this far short of recovering what you invested'}
     </div>
 
-    <!-- SECONDARY: vs 2028 comparison -->
-    <div style="padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:.78rem;color:var(--muted);margin-bottom:10px">
-      vs. selling Apr 2028: <strong style="color:${delta>=0?'var(--accent2)':'var(--red)'}">${delta>=0?'+':'−'}$${Math.abs(Math.round(delta)).toLocaleString()}</strong> more cash in hand from holding longer
-    </div>
-
-    <!-- STATS row -->
-    <div style="font-size:.72rem;color:var(--muted)">
-      Rent (ext. period): <strong style="color:var(--text)">$${rentExt.toLocaleString()}</strong> &nbsp;·&nbsp;
-      Extra interest: <strong style="color:var(--red)">−$${Math.round(extInt).toLocaleString()}</strong> &nbsp;·&nbsp;
-      Balance ↓ extra: <strong style="color:var(--accent2)">$${Math.round(FINAL_BAL-extBal).toLocaleString()}</strong>
-    </div>`;
+    `;
 
   // ── Find break-even year ───────────────────────────────────────────────────
   let breakEvenYear = null;
