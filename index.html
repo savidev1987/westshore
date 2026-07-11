@@ -889,10 +889,14 @@ function updateExtended(){
   const salePrice = Math.round(BASE_SALE_28 * Math.pow(1 + appr/100, extYears));
   const realtor   = salePrice * extRc / 100;
   const netProc   = salePrice - extReno - realtor;
-  const cash      = netProc - extBal - DEPOSIT_RETURN;
+
+  // 0.5% annual maintenance on appreciated home value
+  const maintCost = Math.round(salePrice * 0.005 * extYears);
+
+  const cash      = netProc - extBal - DEPOSIT_RETURN - maintCost;
 
   // Paper result: vs full net OOP (base 2028 + extension period)
-  const netOopExt   = NET_OOP + extInt + extHOA - extRent * extMonths;
+  const netOopExt   = NET_OOP + extInt + extHOA - extRent * extMonths + maintCost;
   const paperResult = cash - netOopExt;
 
   const delta = cash - CASH_2028;
@@ -904,6 +908,7 @@ function updateExtended(){
     <div class="scenario-row"><span style="color:var(--muted)">Realtor (${extRc}%) + Reno</span><span style="color:var(--red)">(−$${Math.round(realtor+extReno).toLocaleString()})</span></div>
     <div class="scenario-row"><span style="color:var(--muted)">Mortgage Payoff (${sellLabel})</span><span style="color:var(--red)">(−$${extBal.toLocaleString()})</span></div>
     <div class="scenario-row"><span style="color:var(--muted)">Deposit Return</span><span style="color:var(--red)">(−$2,500)</span></div>
+    <div class="scenario-row"><span style="color:var(--muted)">Maintenance (0.5%/yr × ${extYears} yr)</span><span style="color:var(--red)">(−$${maintCost.toLocaleString()})</span></div>
     <div class="scenario-row" style="border:none;padding-top:14px"><span style="font-weight:700">Net Cash in Hand</span><span style="font-weight:700;color:var(--accent2)">$${Math.round(cash).toLocaleString()}</span></div>
     <div style="margin-top:10px;font-size:.72rem;color:var(--muted)">
       Mortgage balance drops: <strong style="color:var(--text)">$${Math.round(FINAL_BAL-extBal).toLocaleString()}</strong> more paid down<br>
@@ -937,10 +942,12 @@ function updateExtended(){
   for(let yr = 2028; yr <= 2040; yr++){
     const mos = (yr - 2028) * 12;
     if(mos === 0){ if(CASH_2028 >= NET_OOP){ breakEvenYear = 2028; break; } continue; }
+    const yrs = yr - 2028;
     const { bal: bBal, totInt: bInt } = getExtData(yr);
-    const bSale   = Math.round(BASE_SALE_28 * Math.pow(1 + appr/100, yr-2028));
-    const bCash   = bSale - 5000 - bSale*extRc/100 - bBal - DEPOSIT_RETURN;
-    const bNetOOP = NET_OOP + bInt + mos*270 - extRent*mos;
+    const bSale   = Math.round(BASE_SALE_28 * Math.pow(1 + appr/100, yrs));
+    const bMaint  = Math.round(bSale * 0.005 * yrs);
+    const bCash   = bSale - 5000 - bSale*extRc/100 - bBal - DEPOSIT_RETURN - bMaint;
+    const bNetOOP = NET_OOP + bInt + mos*270 - extRent*mos + bMaint;
     if(bCash >= bNetOOP){ breakEvenYear = yr; break; }
   }
   const beLabel = breakEvenYear
@@ -951,15 +958,20 @@ function updateExtended(){
   const yearsRange = [2028,2029,2030,2031,2032,2033,2034,2035];
   const cashByYear = yearsRange.map(yr => {
     if(yr === 2028) return CASH_2028;
+    const yrs2 = yr - 2028;
     const { bal: b2 } = getExtData(yr);
-    const s2 = Math.round(BASE_SALE_28 * Math.pow(1+appr/100, yr-2028));
-    return Math.round(s2 - 5000 - s2*extRc/100 - b2 - DEPOSIT_RETURN);
+    const s2 = Math.round(BASE_SALE_28 * Math.pow(1+appr/100, yrs2));
+    const m2 = Math.round(s2 * 0.005 * yrs2);
+    return Math.round(s2 - 5000 - s2*extRc/100 - b2 - DEPOSIT_RETURN - m2);
   });
   const netOopByYear = yearsRange.map(yr => {
     if(yr === 2028) return Math.round(NET_OOP);
-    const mos2 = (yr-2028)*12;
+    const yrs2 = yr - 2028;
+    const mos2 = yrs2 * 12;
     const { totInt: ti2 } = getExtData(yr);
-    return Math.round(NET_OOP + ti2 + mos2*270 - extRent*mos2);
+    const s2 = Math.round(BASE_SALE_28 * Math.pow(1+appr/100, yrs2));
+    const m2 = Math.round(s2 * 0.005 * yrs2);
+    return Math.round(NET_OOP + ti2 + mos2*270 - extRent*mos2 + m2);
   });
 
   if(extChart){ extChart.destroy(); extChart = null; }
