@@ -1116,26 +1116,34 @@ function updateExtended(){
     </div>`;
 
   const beGap = Math.round(netOopExt - cash);
-  const beGapLine = beGap <= 0
-    ? `<div style="margin-top:12px;padding:10px 16px;border-radius:12px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);font-size:.78rem;color:var(--accent2);font-weight:600">
-        ✅ Break-even reached — you're ahead by $${Math.abs(beGap).toLocaleString()} vs. total invested
-       </div>`
-    : `<div style="margin-top:12px;padding:10px 16px;border-radius:12px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);font-size:.78rem;color:var(--red)">
-        ⚠️ Still <strong>$${beGap.toLocaleString()}</strong> short of break-even &nbsp;·&nbsp;
-        Need $${Math.round(netOopExt).toLocaleString()} in hand, have $${Math.round(cash).toLocaleString()}
-       </div>`;
+  const ahead = beGap <= 0;
 
   $('ext-big').innerHTML = `
-    <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px">${sellLabel} vs Apr 2028 · Extra cash in hand from holding longer</div>
-    <div class="big-num" style="background:linear-gradient(135deg,${delta>=0?'#34d399,#60a5fa':'#f87171,#fbbf24'});-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
-      ${delta>=0?'+':'−'}$${Math.abs(Math.round(delta)).toLocaleString()}
+    <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px">
+      ${sellLabel} · vs. Total Invested ($${Math.round(netOopExt).toLocaleString()})
     </div>
-    <div style="font-size:.75rem;color:var(--muted);margin-top:10px">
-      Rent collected (ext. period): $${rentExt.toLocaleString()} &nbsp;·&nbsp;
-      Extra interest paid: $${Math.round(extInt).toLocaleString()} &nbsp;·&nbsp;
-      Balance reduced by: $${Math.round(FINAL_BAL-extBal).toLocaleString()}
+
+    <!-- PRIMARY: break-even gap -->
+    <div class="big-num" style="background:linear-gradient(135deg,${ahead?'#34d399,#60a5fa':'#f87171,#fbbf24'});-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+      ${ahead?'+':'−'}$${Math.abs(beGap).toLocaleString()}
     </div>
-    ${beGapLine}`;
+    <div style="font-size:.82rem;font-weight:600;color:${ahead?'var(--accent2)':'var(--red)'};margin-top:6px;margin-bottom:14px">
+      ${ahead
+        ? '✅ Break-even cleared — you recover everything invested and pocket this'
+        : '⚠️ Still this far short of recovering what you invested'}
+    </div>
+
+    <!-- SECONDARY: vs 2028 comparison -->
+    <div style="padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:.78rem;color:var(--muted);margin-bottom:10px">
+      vs. selling Apr 2028: <strong style="color:${delta>=0?'var(--accent2)':'var(--red)'}">${delta>=0?'+':'−'}$${Math.abs(Math.round(delta)).toLocaleString()}</strong> more cash in hand from holding longer
+    </div>
+
+    <!-- STATS row -->
+    <div style="font-size:.72rem;color:var(--muted)">
+      Rent (ext. period): <strong style="color:var(--text)">$${rentExt.toLocaleString()}</strong> &nbsp;·&nbsp;
+      Extra interest: <strong style="color:var(--red)">−$${Math.round(extInt).toLocaleString()}</strong> &nbsp;·&nbsp;
+      Balance ↓ extra: <strong style="color:var(--accent2)">$${Math.round(FINAL_BAL-extBal).toLocaleString()}</strong>
+    </div>`;
 
   // ── Find break-even year ───────────────────────────────────────────────────
   let breakEvenYear = null;
