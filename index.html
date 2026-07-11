@@ -509,11 +509,17 @@ input[type=number]:focus { border-color: rgba(167,139,250,.5); box-shadow: 0 0 0
       <div class="kpi-value neg">−$20k</div>
       <div class="kpi-sub">$560k → $540k · Apr 2028</div>
     </div>
-    <div class="kpi" style="--kpi-color:#fbbf24">
+    <div class="kpi" style="--kpi-color:#fb923c;cursor:pointer" onclick="document.getElementById('selling-costs-modal').style.display='flex'" title="Click for breakdown">
+      <div class="kpi-glow"></div><div class="kpi-icon">🏷</div>
+      <div class="kpi-label">Selling Costs</div>
+      <div class="kpi-value" style="color:#fb923c">−$21,000</div>
+      <div class="kpi-sub">Tap for breakdown 👆</div>
+    </div>
+    <div class="kpi" style="--kpi-color:#fbbf24;cursor:pointer" onclick="document.getElementById('selling-costs-modal').style.display='flex'" title="Click to see how this is calculated">
       <div class="kpi-glow"></div><div class="kpi-icon">💎</div>
       <div class="kpi-label">Equity at Sale</div>
-      <div class="kpi-value">$176,487</div>
-      <div class="kpi-sub">Apr 2028 @ $540k</div>
+      <div class="kpi-value">$174,027</div>
+      <div class="kpi-sub">After all selling costs 👆</div>
     </div>
   </div>
   <div class="chart-grid two row-gap">
@@ -1191,6 +1197,60 @@ new Chart($('sensitivityChart'),{type:'bar',data:{
   tb.innerHTML = rows.join('');
 })();
 </script>
+
+<!-- ══ SELLING COSTS MODAL ════════════════════════════════════════════ -->
+<div id="selling-costs-modal" style="display:none;position:fixed;inset:0;z-index:999;align-items:center;justify-content:center;background:rgba(5,8,20,.75);backdrop-filter:blur(6px)" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#0d1224;border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px;max-width:440px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,.6)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <div>
+        <div style="font-size:1.05rem;font-weight:700">Equity at Sale — Full Breakdown</div>
+        <div style="font-size:.75rem;color:#94a3b8;margin-top:3px">Apr 2028 · $540k sale price</div>
+      </div>
+      <button onclick="document.getElementById('selling-costs-modal').style.display='none'" style="background:rgba(255,255,255,.08);border:none;color:#94a3b8;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">✕</button>
+    </div>
+
+    <!-- Gross proceeds -->
+    <div style="background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.15);border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:.7rem;font-weight:600;color:#34d399;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Gross Sale Proceeds</div>
+      <div style="display:flex;justify-content:space-between;font-size:.95rem;font-weight:700">
+        <span>Sale Price</span><span style="color:#34d399">$540,000</span>
+      </div>
+    </div>
+
+    <!-- Deductions -->
+    <div style="background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.15);border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:.7rem;font-weight:600;color:#f87171;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Deductions at Closing</div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+        <span style="color:#94a3b8">Mortgage Payoff (Apr 2028)</span><span style="color:#f87171">−$344,973</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+        <span style="color:#94a3b8">Realtor Commission (2.5%)</span><span style="color:#f87171">−$13,500</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+        <span style="color:#94a3b8">Renovation / Prep</span><span style="color:#f87171">−$5,000</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;padding:7px 0">
+        <span style="color:#94a3b8">Security Deposit Return (Tenant 2)</span><span style="color:#f87171">−$2,500</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.08);font-weight:600">
+        <span>Total Selling Costs</span><span style="color:#fb923c">−$21,000</span>
+      </div>
+    </div>
+
+    <!-- Net result -->
+    <div style="background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.82rem">
+        <span style="color:#94a3b8">$540,000 − $344,973 − $21,000</span>
+        <span style="color:#94a3b8">=</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-weight:700">Net Cash in Hand at Sale</span>
+        <span style="font-size:1.5rem;font-weight:800;color:#fbbf24">$174,027</span>
+      </div>
+      <div style="font-size:.72rem;color:#94a3b8;margin-top:10px">This is the actual cash you walk away with after paying off the mortgage, agent, prep, and returning the deposit.</div>
+    </div>
+  </div>
+</div>
 
 <!-- ══ PRINCIPAL BREAKDOWN MODAL ══════════════════════════════════════ -->
 <div id="principal-modal" style="display:none;position:fixed;inset:0;z-index:999;align-items:center;justify-content:center;background:rgba(5,8,20,.75);backdrop-filter:blur(6px)" onclick="if(event.target===this)this.style.display='none'">
